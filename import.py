@@ -13,7 +13,7 @@ def main():
     subgroup_directories = ['helms', 'unknown', 'ansible', 'applications']
 
     # Connect to GitLab API
-    gl = gitlab.Gitlab('https://gitlab.com', private_token='kDTxtmkoVxFoJXPz3sso', per_page=1000)
+    gl = gitlab.Gitlab('https://gitlab.com', private_token='TOKEN ENDS WITH so', per_page=1000)
 
     for subgroup_directory in subgroup_directories:
         # Create List of all the exported files
