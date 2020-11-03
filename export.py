@@ -1,10 +1,11 @@
 import gitlab
 import re
 import time
+import os
 
 # Constants
 PATH = 'C:\\Users\\Computer\\Desktop\\import-to-gitlab'
-
+SUBGROUPS = ['helms', 'unknown', 'ansible', 'applications']
 
 # Determines the type of the project
 def get_project_type(project):
@@ -31,7 +32,14 @@ def get_project_type(project):
     return project_type
 
 
+def directories_setup():
+    for subgroup in SUBGROUPS:
+        if not os.path.exists(f'{PATH}//{subgroup}'):
+            os.makedirs(f'{PATH}//{subgroup}')
+
+
 def main():
+    directories_setup()
     # Connect to GitLab API
     gl = gitlab.Gitlab('http://gitlab.cloudlet-dev.com', private_token='yxmHENWaJuz1dzCjydDi', per_page=1000)
     gl.auth()
