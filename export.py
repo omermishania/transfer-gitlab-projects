@@ -41,7 +41,7 @@ def directories_setup():
 def main():
     directories_setup()
     # Connect to GitLab API
-    gl = gitlab.Gitlab('http://gitlab.cloudlet-dev.com', private_token='yxmHENWaJuz1dzCjydDi', per_page=1000)
+    gl = gitlab.Gitlab('http://gitlab.cloudlet-dev.com', private_token='TOKEN ENDS WITH Di', per_page=1000)
     gl.auth()
 
     # Total downloaded projects
