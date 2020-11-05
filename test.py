@@ -1,8 +1,12 @@
 import gitlab
 from export import get_project_type
 
+#Constants
+OLD_GITLAB = 'http://gitlab.cloudlet-dev.com'
+OLD_GITLAB_TOKEN = 'Ends with DI'
+
 # Connect to GitLab API
-gl = gitlab.Gitlab('http://gitlab.cloudlet-dev.com', private_token='yxmHENWaJuz1dzCjydDi', per_page=1000 )
+gl = gitlab.Gitlab(OLD_GITLAB, OLD_GITLAB_TOKEN, per_page=1000 )
 gl.auth()
 
 count = 0
