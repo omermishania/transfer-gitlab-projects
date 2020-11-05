@@ -5,19 +5,19 @@ import os
 
 # Constants
 PATH = 'C:\\Users\\Computer\\Desktop\\import-to-gitlab'
+NEW_GITLAB = 'https://gitlab.com'
+NEW_GITLAB_TOKEN = 'Ends with SO'
+SUBGROUPS = ['helms', 'unknown', 'ansible', 'applications']
+SUBGROUPS_DICT = {'helms': '9032559', 'applications': '9032575', 'ansible': '9032553', 'unknown': '9142157'}  # Dict with project types and subgroups id's
 
 
 def main():
-    # Dict with project types and subgroups id's
-    subgroups = {'helms': '9032559', 'applications': '9032575', 'ansible': '9032553', 'unknown': '9142157'}
-    subgroup_directories = ['helms', 'unknown', 'ansible', 'applications']
-
     # Connect to GitLab API
-    gl = gitlab.Gitlab('https://gitlab.com', private_token='TOKEN ENDS WITH so', per_page=1000)
+    gl = gitlab.Gitlab(NEW_GITLAB, NEW_GITLAB_TOKEN, per_page=1000)
 
-    for subgroup_directory in subgroup_directories:
+    for subgroup in SUBGROUPS:
         # Create List of all the exported files
-        os.chdir(f"{PATH}\\{subgroup_directory}")
+        os.chdir(f"{PATH}\\{subgroup}")
         project_files = glob.glob("*")
 
         for project_file in project_files:
@@ -30,7 +30,7 @@ def main():
             # If file doesn't exist, import it
             try:
                 # Opens exported file
-                output = gl.projects.import_project(open(project_file, 'rb'), namespace=subgroups[subgroup_directory], path=project_name)
+                output = gl.projects.import_project(open(project_file, 'rb'), namespace=SUBGROUPS_DICT[subgroup], path=project_name)
 
                 # Get a ProjectImport object to track the import status
                 project_import = gl.projects.get(output['id'], lazy=True).imports.get()
