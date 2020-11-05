@@ -5,6 +5,8 @@ import os
 
 # Constants
 PATH = 'C:\\Users\\Computer\\Desktop\\import-to-gitlab'
+OLD_GITLAB = 'http://gitlab.cloudlet-dev.com'
+OLD_GITLAB_TOKEN = 'Ends with DI'
 SUBGROUPS = ['helms', 'unknown', 'ansible', 'applications']
 
 # Determines the type of the project
@@ -41,7 +43,7 @@ def directories_setup():
 def main():
     directories_setup()
     # Connect to GitLab API
-    gl = gitlab.Gitlab('http://gitlab.cloudlet-dev.com', private_token='TOKEN ENDS WITH Di', per_page=1000)
+    gl = gitlab.Gitlab(OLD_GITLAB, OLD_GITLAB_TOKEN, per_page=1000)
     gl.auth()
 
     # Total downloaded projects
